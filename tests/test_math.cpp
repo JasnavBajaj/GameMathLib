@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <cmath>
+
 #include <gamemath/Vector2D.h>
 #include <gamemath/Vector3D.h>
 #include <gamemath/Matrix3x3.h>
@@ -24,6 +25,10 @@ TEST(Vector2DTests, BasicOperations) {
     Vector2D v5 = v1 * 2.0f;
     EXPECT_FLOAT_EQ(v5.x, 6.0f);
     EXPECT_FLOAT_EQ(v5.y, 8.0f);
+
+    Vector2D v6 = v1 / 2.0f;
+    EXPECT_FLOAT_EQ(v6.x, 1.5f);
+    EXPECT_FLOAT_EQ(v6.y, 2.0f);
 }
 
 TEST(Vector2DTests, LengthAndDot) {
@@ -69,7 +74,7 @@ TEST(Matrix3x3Tests, IdentityScaleRotation) {
     EXPECT_FLOAT_EQ(scale.m[1][1], 3.0f);
 
     Matrix3x3 rot = Matrix3x3::rotation(static_cast<float>(M_PI) / 2.0f);
-    EXPECT_NEAR(rot.m[0][0], 0.0f, 1e-3);
+    EXPECT_NEAR(rot.m[0][0], 0.0f, 1e-3); // cos(90°) ≈ 0
     EXPECT_NEAR(rot.m[1][1], 0.0f, 1e-3);
 }
 
